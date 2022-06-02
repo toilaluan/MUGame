@@ -8,25 +8,42 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
+import graphic.PlayerGraphic;
+import object.OBJ;
+import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
 	
 	double FPS = 60;
-	final int originalTileSize = 16; // Kich thuoc cua nhan vat
-	final int scale = 3; // tang kich thuoc nhan vat theo scale
-	public final int tileSize = scale * originalTileSize; 
-	final int maxScreenCol = 16;
-	final int maxScreenRow = 9; //ti le 16:9
+	public final int originalTileSize = 16; // Kich thuoc cua nhan vat
+	public final int scale = 3; // tang kich thuoc nhan vat theo scale
+	public final int tileSize = scale * originalTileSize;
+	public final int maxScreenCol = 16;
+	public final int maxScreenRow = 16; //ti le 16:9
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize * maxScreenRow;
+	public final int maxWorldRow = 16;
+	public final int maxWorldCol = 20;
+	public final int worldWidth = tileSize * maxWorldCol;
+	public final int worldHeight = tileSize * maxWorldRow;
+
 	Thread gameThread;
 	KeyHandler keyH = new KeyHandler();
-//	set Player's default position 
-	Player player = new Player(this, keyH);
+	public Player player = new Player(this, keyH, 1, 1);
+	TileManager tileM = new TileManager(this);
+	//	set Player's default position
+	public OBJ obj[] = new OBJ[10];
+	PlayerGraphic pg = new PlayerGraphic(player, this, keyH);
+
+	public AssetSetter aSetter = new AssetSetter(this);
+	public ColissionChecker cChecker = new ColissionChecker(this);
+	public void setupGame(){
+		aSetter.setObject(obj);
+	}
 	public GamePanel() {
 		
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-		this.setBackground(Color.blue);
+		this.setBackground(Color.black);
 		this.setDoubleBuffered(false);
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
@@ -60,7 +77,16 @@ public class GamePanel extends JPanel implements Runnable{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		player.draw(g2);
+		tileM.draw(g2);
+//		Object
+		for (int i = 0; i < obj.length; i++){
+			if (obj[i] == null){
+				break;
+			}
+			obj[i].draw(g2, this);
+//			System.out.println(1);
+		}
+		pg.draw(g2);
 		g2.dispose();
 	}
 }
