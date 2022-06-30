@@ -1,13 +1,14 @@
 package main;
 
 import entity.Entity;
+import object.ObjInteraction;
 
 public class ColissionChecker {
     GamePanel gp;
+    public ObjInteraction interactor = new ObjInteraction();
     public ColissionChecker(GamePanel gp){
         this.gp = gp;
     }
-
     public void checkTile(Entity entity){
         int entityLeftWorldX = entity.worldX + entity.solidArea.x;
         int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;
@@ -54,6 +55,50 @@ public class ColissionChecker {
                 }
                 break;
 
+        }
+    }
+    public void checkObject(Entity entity, boolean player){
+        int index = 999;
+        for (int i = 0; i < gp.obj.size(); i++){
+//            System.out.println(i);
+            if (gp.obj.get(i) != null){
+                entity.solidArea.x = entity.worldX + entity.solidArea.x;
+                entity.solidArea.y = entity.worldY + entity.solidArea.y;
+
+                gp.obj.get(i).solidArea.x = gp.obj.get(i).worldX + gp.obj.get(i).solidArea.x;
+                gp.obj.get(i).solidArea.y = gp.obj.get(i).worldY + gp.obj.get(i).solidArea.y;
+
+                switch(entity.direction){
+                    case "up":
+                        entity.solidArea.x -= entity.speed;
+                        if (entity.solidArea.intersects(gp.obj.get(i).solidArea)){
+                            interactor.objInteraction(gp, gp.obj.get(i));
+                        }
+                        break;
+                    case "down":
+                        entity.solidArea.x += entity.speed;
+                        if (entity.solidArea.intersects(gp.obj.get(i).solidArea)){
+                            interactor.objInteraction(gp, gp.obj.get(i));
+                        }
+                        break;
+                    case "right":
+                        entity.solidArea.y += entity.speed;
+                        if (entity.solidArea.intersects(gp.obj.get(i).solidArea)){
+                            interactor.objInteraction(gp, gp.obj.get(i));
+                        }
+                        break;
+                    case "left":
+                        entity.solidArea.y -= entity.speed;
+                        if (entity.solidArea.intersects(gp.obj.get(i).solidArea)){
+                            interactor.objInteraction(gp, gp.obj.get(i));
+                        }
+                        break;
+                }
+                entity.solidArea.x = entity.solidAreaDefaultX;
+                entity.solidArea.y = entity.solidAreaDefaultY;
+                gp.obj.get(i).solidArea.x = gp.obj.get(i).solidAreaDefaultX;
+                gp.obj.get(i).solidArea.y = gp.obj.get(i).solidAreaDefaultY;
+            }
         }
     }
 }

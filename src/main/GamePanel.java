@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -32,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public Player player = new Player(this, keyH, 1, 1);
 	TileManager tileM = new TileManager(this);
 	//	set Player's default position
-	public OBJ obj[] = new OBJ[10];
+	public ArrayList<OBJ> obj = new ArrayList<OBJ>();
 	PlayerGraphic pg = new PlayerGraphic(player, this, keyH);
 
 	public AssetSetter aSetter = new AssetSetter(this);
@@ -79,11 +81,11 @@ public class GamePanel extends JPanel implements Runnable{
 		Graphics2D g2 = (Graphics2D) g;
 		tileM.draw(g2);
 //		Object
-		for (int i = 0; i < obj.length; i++){
-			if (obj[i] == null){
+		for (int i = 0; i < obj.size(); i++){
+			if (obj.get(i) == null){
 				break;
 			}
-			obj[i].draw(g2, this);
+			obj.get(i).draw(g2, this);
 //			System.out.println(1);
 		}
 		pg.draw(g2);

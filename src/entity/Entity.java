@@ -1,7 +1,10 @@
 package entity;
 
+import object.OBJ;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Entity {
 	public int worldX = 100;
@@ -16,6 +19,8 @@ public class Entity {
 
 	public Rectangle solidArea;
 
+	public int solidAreaDefaultX, solidAreaDefaultY;
 	public boolean colissionOn = false;
 
+	public ArrayList<OBJ> item;
 }
