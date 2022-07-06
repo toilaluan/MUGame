@@ -8,11 +8,11 @@ import java.awt.image.BufferedImage;
 import java.util.Objects;
 
 public class OBJ {
-    String name;
-    BufferedImage image;
+    public String name;
+    public BufferedImage image;
     public int worldX;
     public int worldY;
-    boolean colission = true;
+    public boolean colission = true;
 
     public Rectangle solidArea = new Rectangle(0,0,48,48);
 

@@ -1,25 +1,33 @@
 package object;
 
+import entity.Player;
 import main.GamePanel;
 
 public class ObjInteraction {
-    public void objInteraction(GamePanel gp, OBJ obj){
-        switch (obj.name){
-            case "Key":
-//                System.out.println("a Key");
-
-                gp.player.item.add(obj);
-                gp.obj.remove(obj);
-                break;
-            case "Door":
-                for (int i = 0; i < gp.player.item.size(); i++){
-                    if ( gp.player.item.get(i) != null && gp.player.item.get(i).name == "Key"){
-                        gp.tileM.getMap("/maps/Rung.txt");
-                        gp.player.item.remove(i);
-                    }
-                }
-                break;
-
-        }
-    }
+	public void ObjInteraction(GamePanel gp, int i) {
+		if (i != 999) {
+			String objectName = gp.obj.get(i).name;
+			switch (objectName) {
+				case "Key":
+					Player.hasKey = true;
+					gp.obj.remove(gp.obj.get(i));
+					break;
+				case "Door":
+					if (Player.hasKey) {
+						gp.obj.remove(gp.obj.get(i));
+						gp.tileM.getMap("/maps/Rung.txt");
+						System.out.println("Move to next map!");
+					}
+					break;
+				case "SpeedPotion":
+					Player.checkSpeedPT = 1;
+					gp.obj.remove(gp.obj.get(i));
+					break;
+				case "HpPotion":
+					Player.checkSpeedPT = 1;
+					gp.obj.remove(gp.obj.get(i));
+					break;
+			}
+		}
+	}
 }

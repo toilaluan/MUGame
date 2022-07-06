@@ -8,27 +8,33 @@ import java.util.Objects;
 
 import javax.imageio.ImageIO;
 
+import main.ColissionChecker;
 import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ;
+import object.ObjInteraction;
 
 public class Player extends Entity {
 
+	public static boolean hasKey = false;
+	public static boolean checkUp,checkDown,checkLeft,checkRight;
 	GamePanel gp;
 	KeyHandler keyH;
 	public int heroCounter;
 	public int heroNum;
 	public int screenX;
 	public int screenY;
-	public int attack;
-
+	public static int checkSpeedPT = 0;
 
 	public Player(GamePanel gp, KeyHandler KeyH, int attack, int defense) {
 		solidArea = new Rectangle();
-		solidArea.x = 8;
-		solidArea.y = 16;
-		solidArea.width = 32;
-		solidArea.height = 32;
+
+
+
+		solidArea.x = 13;
+		solidArea.y = 35;
+		solidArea.width = 20;
+		solidArea.height = 8;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		this.gp = gp;
@@ -41,9 +47,8 @@ public class Player extends Entity {
 	void setDefaultValue() {
 		screenX = gp.screenWidth/2-gp.tileSize/2;
 		screenY = gp.screenHeight/2-gp.tileSize/2;
-		worldX = gp.tileSize * 10;
-		worldY = gp.tileSize * 4;
-		speed = 4;
+		worldX = gp.tileSize * 8;
+		worldY = gp.tileSize * 8;
 		direction = "down";
 		heroCounter = 0;
 		heroNum = 0;
@@ -54,17 +59,24 @@ public class Player extends Entity {
 
 		if (keyH.upPressed) {
 			direction = "up";
+			checkUp = true;
 		}
+		else checkUp=false;
 		if (keyH.downPressed) {
 			direction = "down";
+			checkDown = true;
 		}
+		else checkDown=false;
 		if (keyH.rightPressed) {
 			direction = "right";
+			checkRight = true;
 		}
+		else checkRight=false;
 		if (keyH.leftPressed) {
 			direction = "left";
+			checkLeft = true;
 		}
-
+		else checkLeft=false;
 		heroCounter += 1;
 		if (heroCounter > 10) {
 			heroNum+=1;
@@ -73,24 +85,32 @@ public class Player extends Entity {
 			heroCounter = 0;
 		}
 	}
-	colissionOn = false;
+	colissionOnRoW = false;
+	colissionOnCol = false;
 	gp.cChecker.checkTile(this);
-	gp.cChecker.checkObject(this, true);
-	if (!colissionOn){
+	int objIndex = gp.cChecker.checkObject(this, true);
+		ColissionChecker.interactor.ObjInteraction(gp,objIndex);
+	if (!colissionOnRoW || !colissionOnCol){
 		if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed){
-
+		  if(!colissionOnCol){
 			if (keyH.upPressed) {
-				worldY -= speed;
+				worldY -= Entity.speeds();
 			}
 			if (keyH.downPressed) {
-				worldY += speed;
+				worldY += Entity.speeds();
 			}
+		  }
+			if(!colissionOnRoW){
 			if (keyH.rightPressed) {
-				worldX += speed;
+				worldX += Entity.speeds();
 			}
 			if (keyH.leftPressed) {
-				worldX -= speed;
+				worldX -= Entity.speeds();
 			}
+			}
+			colissionOnRoW = false;
+			colissionOnCol = false;
+			gp.cChecker.checkTile(this);
 			heroCounter += 1;
 			if (heroCounter > 10) {
 				if (heroNum == 1) {
@@ -102,5 +122,6 @@ public class Player extends Entity {
 			}
 	}
 	}
-}
+	}
+
 }

@@ -23,12 +23,15 @@ public class Monster extends Entity {
     public void setDefaultValue(){
         screenX = 500;
         screenY = 500;
-        speed = 1;
+        monsterSpeed = 1;
         direction = "up";
 
     }
     public void update(){
 
+    }
+    public static boolean killMonster(){
+        return true;
     }
     public void draw(Graphics2D g2){
 
