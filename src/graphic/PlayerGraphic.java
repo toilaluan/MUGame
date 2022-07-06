@@ -19,7 +19,8 @@ public class PlayerGraphic extends Entity {
 	BufferedImage run_back0, run_back1, run_back2, run_back3, run_back4, run_back5;
 	BufferedImage step_down, step_up;
     public PlayerGraphic(Player p, GamePanel gp, KeyHandler k){
-        this.player = p;
+		super(gp);
+		this.player = p;
 		this.keyH = k;
         this.gp = gp;
 		getEntityImage();

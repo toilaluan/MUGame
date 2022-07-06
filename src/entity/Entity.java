@@ -1,5 +1,6 @@
 package entity;
 
+import main.GamePanel;
 import object.OBJ;
 import object.OBJ_SpeedPotion;
 
@@ -8,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Entity {
+	GamePanel gp;
 	public int worldX = 100;
 	public int worldY = 100;
 	public int monsterSpeed;
@@ -26,11 +28,13 @@ public class Entity {
 	public int Defense;
 	public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2;
 	public String direction;
-	public Rectangle solidArea;
+	public Rectangle solidArea = new Rectangle(0,0,48,48);
 
 	public int solidAreaDefaultX, solidAreaDefaultY;
 	public static boolean colissionOnCol = false;
 	public static boolean colissionOnRoW = false;
-
+	public Entity(GamePanel gp) {
+		this.gp=gp;
+	}
 	public ArrayList<OBJ> item;
 }

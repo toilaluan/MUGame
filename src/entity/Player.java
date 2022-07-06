@@ -17,20 +17,20 @@ import object.ObjInteraction;
 public class Player extends Entity {
 
 	public static boolean hasKey = false;
-	public static boolean checkUp,checkDown,checkLeft,checkRight;
-	GamePanel gp;
 	KeyHandler keyH;
 	public int heroCounter;
 	public int heroNum;
 	public int screenX;
 	public int screenY;
+	public static boolean checkUp;
+	public static boolean checkDown;
+	public static boolean checkLeft;
+	public static boolean checkRight;
 	public static int checkSpeedPT = 0;
 
 	public Player(GamePanel gp, KeyHandler KeyH, int attack, int defense) {
+		super(gp);
 		solidArea = new Rectangle();
-
-
-
 		solidArea.x = 13;
 		solidArea.y = 35;
 		solidArea.width = 20;
@@ -55,73 +55,74 @@ public class Player extends Entity {
 	}
 
 	public void update() {
-	if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed){
-
-		if (keyH.upPressed) {
-			direction = "up";
-			checkUp = true;
-		}
-		else checkUp=false;
-		if (keyH.downPressed) {
-			direction = "down";
-			checkDown = true;
-		}
-		else checkDown=false;
-		if (keyH.rightPressed) {
-			direction = "right";
-			checkRight = true;
-		}
-		else checkRight=false;
-		if (keyH.leftPressed) {
-			direction = "left";
-			checkLeft = true;
-		}
-		else checkLeft=false;
-		heroCounter += 1;
-		if (heroCounter > 10) {
-			heroNum+=1;
-			heroNum = heroNum%5;
-//			System.out.println(heroNum);
-			heroCounter = 0;
-		}
-	}
-	colissionOnRoW = false;
-	colissionOnCol = false;
-	gp.cChecker.checkTile(this);
-	int objIndex = gp.cChecker.checkObject(this, true);
-		ColissionChecker.interactor.ObjInteraction(gp,objIndex);
-	if (!colissionOnRoW || !colissionOnCol){
 		if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed){
-		  if(!colissionOnCol){
+
 			if (keyH.upPressed) {
-				worldY -= Entity.speeds();
+				direction = "up";
+				checkUp=true;
 			}
+			else checkUp = false;
 			if (keyH.downPressed) {
-				worldY += Entity.speeds();
+				direction = "down";
+				checkDown=true;
 			}
-		  }
-			if(!colissionOnRoW){
+			else checkDown=false;
 			if (keyH.rightPressed) {
-				worldX += Entity.speeds();
+				direction = "right";
+				checkRight=true;
 			}
+			else checkRight = false;
 			if (keyH.leftPressed) {
-				worldX -= Entity.speeds();
+				direction = "left";
+				checkLeft=true;
 			}
-			}
-			colissionOnRoW = false;
-			colissionOnCol = false;
-			gp.cChecker.checkTile(this);
+			else checkLeft=false;
 			heroCounter += 1;
 			if (heroCounter > 10) {
-				if (heroNum == 1) {
-					heroNum = 2;
-				} else if (heroNum == 2) {
-					heroNum = 1;
-				}
+				heroNum+=1;
+				heroNum = heroNum%5;
+//			System.out.println(heroNum);
 				heroCounter = 0;
 			}
-	}
-	}
+		}
+		colissionOnRoW = false;
+		colissionOnCol = false;
+		gp.cChecker.checkTile(this);
+		int objIndex = gp.cChecker.checkObject(this, true);
+		ColissionChecker.interactor.ObjInteraction(gp,objIndex);
+		if (!colissionOnRoW|| !colissionOnCol){
+			if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed){
+				if(!colissionOnCol){
+					if (keyH.upPressed) {
+						worldY -= Entity.speeds();
+					}
+					if (keyH.downPressed) {
+						worldY += Entity.speeds();
+					}
+				}
+				if(!colissionOnRoW){
+
+					if (keyH.rightPressed) {
+						worldX += Entity.speeds();
+					}
+					if (keyH.leftPressed) {
+						worldX -= Entity.speeds();
+					}
+				}
+				colissionOnRoW = false;
+				colissionOnCol = false;
+				gp.cChecker.checkTile(this);
+				heroCounter += 1;
+				if (heroCounter > 10) {
+					if (heroNum == 1) {
+						heroNum = 2;
+					} else if (heroNum == 2) {
+						heroNum = 1;
+					}
+					heroCounter = 0;
+				}
+			}
+		}
 	}
 
 }
