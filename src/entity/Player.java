@@ -1,18 +1,12 @@
 package entity;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
-import javax.imageio.ImageIO;
-
-import main.ColissionChecker;
+import main.CollisionChecker;
 import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ;
-import object.ObjInteraction;
 
 public class Player extends Entity {
 
@@ -42,7 +36,7 @@ public class Player extends Entity {
 		this.Attack = attack;
 		this.Defense = defense;
 		setDefaultValue();
-		item = new ArrayList<OBJ>();
+		item = new ArrayList<>();
 	}
 	void setDefaultValue() {
 		screenX = gp.screenWidth/2-gp.tileSize/2;
@@ -89,7 +83,7 @@ public class Player extends Entity {
 		colissionOnCol = false;
 		gp.cChecker.checkTile(this);
 		int objIndex = gp.cChecker.checkObject(this, true);
-		ColissionChecker.interactor.ObjInteraction(gp,objIndex);
+		CollisionChecker.interactor.ObjInteraction(gp,objIndex);
 		if (!colissionOnRoW|| !colissionOnCol){
 			if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed){
 				if(!colissionOnCol){

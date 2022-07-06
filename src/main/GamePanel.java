@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -34,11 +33,11 @@ public class GamePanel extends JPanel implements Runnable{
 	public Player player = new Player(this, keyH, 1, 1);
 	public TileManager tileM = new TileManager(this);
 	//	set Player's default position
-	public ArrayList<OBJ> obj = new ArrayList<OBJ>();
+	public ArrayList<OBJ> obj = new ArrayList<>();
 	PlayerGraphic pg = new PlayerGraphic(player, this, keyH);
 
 	public AssetSetter aSetter = new AssetSetter(this);
-	public ColissionChecker cChecker = new ColissionChecker(this);
+	public CollisionChecker cChecker = new CollisionChecker(this);
 	public void setupGame(){
 		aSetter.setObject(obj);
 	}
@@ -81,11 +80,11 @@ public class GamePanel extends JPanel implements Runnable{
 		Graphics2D g2 = (Graphics2D) g;
 		tileM.draw(g2);
 //		Object
-		for (int i = 0; i < obj.size(); i++){
-			if (obj.get(i) == null){
+		for (OBJ value : obj) {
+			if (value == null) {
 				break;
 			}
-			obj.get(i).draw(g2, this);
+			value.draw(g2, this);
 //			System.out.println(1);
 		}
 		pg.draw(g2);
