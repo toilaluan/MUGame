@@ -22,6 +22,7 @@ public class Player extends Entity {
 	public static boolean checkRight;
 	public static int checkSpeedPT = 0;
 
+	public boolean attack = false;
 	public Player(GamePanel gp, KeyHandler KeyH, int attack, int defense) {
 		super(gp);
 		solidArea = new Rectangle();
@@ -74,7 +75,7 @@ public class Player extends Entity {
 			heroCounter += 1;
 			if (heroCounter > 10) {
 				heroNum+=1;
-				heroNum = heroNum%5;
+				heroNum = heroNum%4;
 //			System.out.println(heroNum);
 				heroCounter = 0;
 			}
