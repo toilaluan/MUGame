@@ -26,10 +26,10 @@ public class Player extends Entity {
 	public Player(GamePanel gp, KeyHandler KeyH, int attack, int defense) {
 		super(gp);
 		solidArea = new Rectangle();
-		solidArea.x = 13;
-		solidArea.y = 35;
-		solidArea.width = 20;
-		solidArea.height = 8;
+		solidArea.x = 8;
+		solidArea.y = 16;
+		solidArea.width = 32;
+		solidArea.height = 32;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		this.gp = gp;

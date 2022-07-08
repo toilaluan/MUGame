@@ -19,10 +19,13 @@ public class PlayerGraphic extends Entity {
 	KeyHandler keyH;
 	String walk_SS_path = "/player/blue_ninja/Walk.png";
 	String attack_SS_path = "/player/blue_ninja/Attack.png";
+	String attack_item_SS_path = "/Items/Weapons/Lance/SpriteInHand.png"; //Down direction
 	SpriteSheet walkSS;
 	SpriteSheet attackSS;
     ArrayList<BufferedImage> walk_images;
 	ArrayList<BufferedImage> attack_images;
+
+	Weapon wp;
     public PlayerGraphic(Player p, GamePanel gp, KeyHandler k){
 		super(gp);
 		this.player = p;
@@ -30,8 +33,9 @@ public class PlayerGraphic extends Entity {
         this.gp = gp;
 		this.walkSS = new SpriteSheet(gp, walk_SS_path);
 		this.attackSS = new SpriteSheet(gp, attack_SS_path);
-		walk_images = getSpriteImage(4, 4, walkSS);
-		attack_images = getSpriteImage(4, 1, attackSS);
+		walk_images = walkSS.getSpriteImage(4, 4);
+		attack_images = attackSS.getSpriteImage(4, 1);
+		wp = new Weapon(gp);
     }
     public BufferedImage getImage(String path){
 		BufferedImage bImage = null;
@@ -43,18 +47,7 @@ public class PlayerGraphic extends Entity {
 		return bImage;
     }
 
-	public ArrayList<BufferedImage> getSpriteImage(int numCol, int numRow, SpriteSheet ss){
-		ArrayList<BufferedImage> images = new ArrayList<>();
-		int w = ss.image.getWidth()/numCol;
-		int h = ss.image.getHeight()/numRow;
-		for (int i=0; i < numCol; i++){
-			for (int j = 0; j < numRow; j++){
-				BufferedImage image = ss.grabImage(i*w, j*h, w, h);
-				images.add(image);
-			}
-		}
-		return images;
-	}
+
 	public void draw(Graphics2D g2) {
 		BufferedImage image = null;
 //		g2.setColor(Color.white);
@@ -93,6 +86,9 @@ public class PlayerGraphic extends Entity {
 			}
 			break;
 		}
+		if (gp.player.attack){
+			wp.draw(g2);
+		}
 		g2.drawImage(image, player.screenX, player.screenY, gp.tileSize, gp.tileSize, null);
 	}
 
@@ -105,5 +101,8 @@ public class PlayerGraphic extends Entity {
 			case 3: image = run3; break;
 		}
 		return image;
+	}
+	public void drawItemAnimation(){
+
 	}
 }
