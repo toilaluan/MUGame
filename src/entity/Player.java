@@ -50,8 +50,13 @@ public class Player extends Entity {
 	}
 
 	public void update() {
-		if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed){
-
+		if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed || keyH.spacePressed){
+			if (keyH.spacePressed){
+				attack = true;
+			}
+			else{
+				attack = false;
+			}
 			if (keyH.upPressed) {
 				direction = "up";
 				checkUp=true;

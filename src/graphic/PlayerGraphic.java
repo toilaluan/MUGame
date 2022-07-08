@@ -18,7 +18,7 @@ public class PlayerGraphic extends Entity {
     GamePanel gp;
 	KeyHandler keyH;
 	String walk_SS_path = "/player/blue_ninja/Walk.png";
-	String attack_SS_path = "/Items/Weapons/Lance/SpriteInHand.png";
+	String attack_SS_path = "/player/blue_ninja/Attack.png";
 	SpriteSheet walkSS;
 	SpriteSheet attackSS;
     ArrayList<BufferedImage> walk_images;
@@ -31,7 +31,7 @@ public class PlayerGraphic extends Entity {
 		this.walkSS = new SpriteSheet(gp, walk_SS_path);
 		this.attackSS = new SpriteSheet(gp, attack_SS_path);
 		walk_images = getSpriteImage(4, 4, walkSS);
-		attack_images = getSpriteImage(1, 1, attackSS);
+		attack_images = getSpriteImage(4, 1, attackSS);
     }
     public BufferedImage getImage(String path){
 		BufferedImage bImage = null;
@@ -62,7 +62,7 @@ public class PlayerGraphic extends Entity {
 		switch(player.direction) {
 		case "right":
 			if (player.attack){
-				image = attack_images.get(0);
+				image = attack_images.get(3);
 			}
 			else{
 				image = imageSelector(walk_images.get(12), walk_images.get(13), walk_images.get(14), walk_images.get(15));
@@ -78,7 +78,7 @@ public class PlayerGraphic extends Entity {
 			break;
 		case "left":
 			if (player.attack){
-				image = attack_images.get(0);
+				image = attack_images.get(2);
 			}
 			else{
 				image = imageSelector(walk_images.get(8), walk_images.get(9), walk_images.get(10), walk_images.get(11));
@@ -86,7 +86,7 @@ public class PlayerGraphic extends Entity {
 			break;
 		case "up":
 			if (player.attack){
-				image = attack_images.get(0);
+				image = attack_images.get(1);
 			}
 			else{
 				image = imageSelector(walk_images.get(4), walk_images.get(5), walk_images.get(6), walk_images.get(7));
