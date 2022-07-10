@@ -17,7 +17,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	double FPS = 60;
 	public final int originalTileSize = 16; // Kich thuoc cua nhan vat
-	public final int scale = 5; // tang kich thuoc nhan vat theo scale
+	public final int scale = 3; // tang kich thuoc nhan vat theo scale
 	public final int tileSize = scale * originalTileSize;
 	public final int maxScreenCol = 16;
 	public final int maxScreenRow = 16; //ti le 16:9
