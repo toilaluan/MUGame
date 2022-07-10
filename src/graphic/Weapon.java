@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Weapon {
-    String weapon_path = "/Items/Weapons/Lance2/SpriteInHand.png";
+    String weapon_path = "/Items/Weapons/Lance/SpriteInHand.png";
     SpriteSheet weapon_SS;
     GamePanel gp;
     static int w = 6;
