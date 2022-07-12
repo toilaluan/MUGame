@@ -21,8 +21,8 @@ public class Player extends Entity {
 	public static boolean checkLeft;
 	public static boolean checkRight;
 	public static int checkSpeedPT = 0;
-
 	public boolean attack = false;
+	Rectangle attackArea = new Rectangle(0,0,0,0);
 	public Player(GamePanel gp, KeyHandler KeyH, int attack, int defense) {
 		super(gp);
 		solidArea = new Rectangle();
@@ -50,7 +50,10 @@ public class Player extends Entity {
 	}
 
 	public void update() {
-		if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed || keyH.spacePressed){
+		if(attack){
+			attacking();
+		}
+		else if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed || keyH.spacePressed){
 			if (keyH.spacePressed){
 				attack = true;
 			}
@@ -122,6 +125,42 @@ public class Player extends Entity {
 					heroCounter = 0;
 				}
 			}
+		}
+	}
+	private void attacking() {
+		heroCounter++;
+		if(heroCounter <= 5){
+			heroNum = 1;
+		}
+		if(heroCounter > 5 && heroCounter < 25){
+			heroNum = 2;
+			//luu worldX,Y, solidArea
+			int currentWorldX = worldX;
+			int currentWorldY = worldY;
+			int solidAreaWidth = solidArea.width;
+			int solidAreaHeight = solidArea.height;
+
+			switch (direction){
+				case "up": worldY -= attackArea.height;
+				case "down": worldY += attackArea.height;
+				case "left": worldX -= attackArea.width;
+				case "right": worldX += attackArea.width;
+			}
+
+			solidArea.width = attackArea.width;
+			solidArea.height = attackArea.height;
+
+//			int monIndex = gp.cChecker.checkEntity(this, gp.monster);
+//			damageMonster(monIndex, atk);
+			worldX = currentWorldX;
+			worldY = currentWorldY;
+			solidArea.width = solidAreaWidth;
+			solidArea.height = solidAreaHeight;
+		}
+		if(heroCounter >= 25){
+			heroNum = 1;
+			heroCounter = 0;
+			attack = false;
 		}
 	}
 
