@@ -25,11 +25,16 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int screenHeight = tileSize * maxScreenRow;
 	public final int maxWorldRow = 32;
 	public final int maxWorldCol = 32;
+
 	public final int worldWidth = tileSize * maxWorldCol;
 	public final int worldHeight = tileSize * maxWorldRow;
+	public int gameState;
+	public final int titleState=0;
+	public final int playState =1;
+	public final int pauseState =2;
 
 	Thread gameThread;
-	KeyHandler keyH = new KeyHandler();
+	KeyHandler keyH = new KeyHandler(this);
 	public Player player = new Player(this, keyH, 1, 1);
 	public TileManager tileM = new TileManager(this);
 	//	set Player's default position
@@ -40,7 +45,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public void setupGame(){
 		aSetter.setObject(obj);
+		gameState=playState;
 	}
+	public UI ui=new UI(this);
 	public GamePanel() {
 		
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -49,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable{
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
 	}
-	
+
 	public void startGameThread() {
 		gameThread = new Thread(this);
 		gameThread.start();
@@ -73,7 +80,9 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 	}
 	public void update() {
-		player.update();
+			if (gameState == playState) {
+				// update player
+				player.update();}
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -88,6 +97,8 @@ public class GamePanel extends JPanel implements Runnable{
 //			System.out.println(1);
 		}
 		pg.draw(g2);
+		ui.draw(g2);
 		g2.dispose();
+
 	}
 }
