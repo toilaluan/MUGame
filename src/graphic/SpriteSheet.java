@@ -27,6 +27,7 @@ public class SpriteSheet {
         //Selecting the rows and columns of the spritesheet in folder res. 
         //This determines what image from the sprite sheet to display, in this case the player.
     }
+
     public ArrayList<BufferedImage> getSpriteImage(int numCol, int numRow){
         ArrayList<BufferedImage> images = new ArrayList<>();
         int w = this.image.getWidth()/numCol;

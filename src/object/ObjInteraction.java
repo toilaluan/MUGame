@@ -15,7 +15,7 @@ public class ObjInteraction {
 				case "Door":
 					if (Player.hasKey) {
 						gp.obj.remove(gp.obj.get(i));
-						gp.tileM.getMap("/maps/Rung.txt");
+//						gp.tileM.getMap("/maps/Rung.txt");
 						System.out.println("Move to next map!");
 					}
 					break;

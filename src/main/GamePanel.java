@@ -11,7 +11,8 @@ import javax.swing.JPanel;
 import entity.Player;
 import graphic.PlayerGraphic;
 import object.OBJ;
-import tile.TileManager;
+import render.TileManager;
+//import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
 	
@@ -23,8 +24,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int maxScreenRow = 16; //ti le 16:9
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize * maxScreenRow;
-	public final int maxWorldRow = 32;
-	public final int maxWorldCol = 32;
+	public final int maxWorldRow = 20;
+	public final int maxWorldCol = 40;
 
 	public final int worldWidth = tileSize * maxWorldCol;
 	public final int worldHeight = tileSize * maxWorldRow;

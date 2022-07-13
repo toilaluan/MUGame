@@ -90,7 +90,7 @@ public class Player extends Entity {
 		}
 		colissionOnRoW = false;
 		colissionOnCol = false;
-		gp.cChecker.checkTile(this);
+//		gp.cChecker.checkTile(this);
 		int objIndex = gp.cChecker.checkObject(this, true);
 		CollisionChecker.interactor.ObjInteraction(gp,objIndex);
 		if (!colissionOnRoW|| !colissionOnCol){
@@ -114,7 +114,7 @@ public class Player extends Entity {
 				}
 				colissionOnRoW = false;
 				colissionOnCol = false;
-				gp.cChecker.checkTile(this);
+//				gp.cChecker.checkTile(this);
 				heroCounter += 1;
 				if (heroCounter > 10) {
 					if (heroNum == 1) {
