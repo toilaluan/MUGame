@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public void setupGame(){
 		aSetter.setObject(obj);
-		gameState=playState;
+		gameState=titleState;
 	}
 	public UI ui=new UI(this);
 	public GamePanel() {
@@ -87,17 +87,24 @@ public class GamePanel extends JPanel implements Runnable{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		tileM.draw(g2);
-//		Object
-		for (OBJ value : obj) {
-			if (value == null) {
-				break;
-			}
-			value.draw(g2, this);
-//			System.out.println(1);
+		//title screen
+		if(gameState==titleState){
+			ui.draw(g2);
 		}
-		pg.draw(g2);
-		ui.draw(g2);
+		else{
+			tileM.draw(g2);
+//		Object
+			for (OBJ value : obj) {
+				if (value == null) {
+					break;
+				}
+				value.draw(g2, this);
+//			System.out.println(1);
+			}
+			pg.draw(g2);
+			ui.draw(g2);
+		}
+
 		g2.dispose();
 
 	}
