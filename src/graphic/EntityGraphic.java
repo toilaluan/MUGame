@@ -8,13 +8,11 @@ import main.KeyHandler;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class PlayerGraphic extends Entity {
-    Player player;
+public class EntityGraphic extends Entity {
+    Entity player;
     GamePanel gp;
 	KeyHandler keyH;
 	String walk_SS_path = "/player/blue_ninja/Walk.png";
@@ -26,10 +24,13 @@ public class PlayerGraphic extends Entity {
 	ArrayList<BufferedImage> attack_images;
 
 	Weapon wp;
-    public PlayerGraphic(Player p, GamePanel gp, KeyHandler k){
+    public EntityGraphic(Entity p, GamePanel gp, String playerType, String attackType){
 		super(gp);
+		this.walk_SS_path = "/Actor/Characters/" + playerType + "/SeparateAnim/Walk.png";
+		this.attack_SS_path = "/Actor/Characters/" + playerType + "/SeparateAnim/Attack.png";
+		this.attack_item_SS_path = "/Items/Weapons/" + attackType + "SpriteInHand.png";
 		this.player = p;
-		this.keyH = k;
+		this.keyH = gp.keyH;
         this.gp = gp;
 		this.walkSS = new SpriteSheet(gp, walk_SS_path);
 		this.attackSS = new SpriteSheet(gp, attack_SS_path);
@@ -37,6 +38,20 @@ public class PlayerGraphic extends Entity {
 		attack_images = attackSS.getSpriteImage(4, 1);
 		wp = new Weapon(gp);
     }
+	public EntityGraphic(Entity p, GamePanel gp, String monsterType){
+		super(gp);
+		this.walk_SS_path = "/Actor/Monsters/" + monsterType + "/" + monsterType + ".png";
+		this.attack_SS_path = "/Actor/Characters/" + "BlueNinja" + "/SeparateAnim/Attack.png";
+		this.attack_item_SS_path = "/Items/Weapons/" + "Lance" + "SpriteInHand.png";
+		this.player = p;
+		this.keyH = gp.keyH;
+		this.gp = gp;
+		this.walkSS = new SpriteSheet(gp, walk_SS_path);
+		this.attackSS = new SpriteSheet(gp, attack_SS_path);
+		walk_images = walkSS.getSpriteImage(4, 4);
+		attack_images = attackSS.getSpriteImage(4, 1);
+		wp = new Weapon(gp);
+	}
     public BufferedImage getImage(String path){
 		BufferedImage bImage = null;
         try{

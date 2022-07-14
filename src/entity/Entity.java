@@ -9,12 +9,12 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Entity {
-	GamePanel gp;
+	public GamePanel gp;
 	public int worldX = 100;
 	public int worldY = 100;
 	public int monsterSpeed;
-	public static int speed = 4;
-	public static int speeds() {
+	public int speed = 4;
+	public int speeds() {
 		if (Player.checkSpeedPT==1) {
 			Player.checkSpeedPT = 0;
 			speed = speed+ OBJ_SpeedPotion.speedBonus;
@@ -22,16 +22,19 @@ public class Entity {
 		}
 		else return speed;
 	}
-//	public int mp = 100;
-//	public int hp = 100;
+
 	public int maxlife;
 	public int life;
 	public int maxmana;
 	public int mana;
 	public int Attack;
+	public boolean attack = false;
+
+	public int screenX;
+	public int heroNum;
+	public int screenY;
 	public int Defense;
-	public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2;
-	public String direction;
+	public String direction = "down";
 	public Rectangle solidArea = new Rectangle(0,0,48,48);
 
 	public int solidAreaDefaultX, solidAreaDefaultY;

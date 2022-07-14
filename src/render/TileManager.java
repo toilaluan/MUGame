@@ -79,11 +79,11 @@ public class TileManager {
                 System.out.println(tileColumns);
                 System.out.println(width);
                 if (i == 0){
-                    tileMaps.add(new FloorMap(sprites.get(i), data[i], width, height, tileColumns, tileCount));
+                    tileMaps.add(new FloorMap(sprites.get(i), data[i], width, height, tileColumns, tileCount, false));
                 }
                 else if (i == 1){
                     System.out.println(tileCount);
-                    tileMaps.add(new FloorMap(sprites.get(i), data[i], width, height, tileColumns, tileCount));
+                    tileMaps.add(new FloorMap(sprites.get(i), data[i], width, height, tileColumns, tileCount, true));
                 }
                 tileCount += Integer.parseInt(eElement1.getAttribute("tilecount"));
             }

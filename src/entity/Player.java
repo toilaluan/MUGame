@@ -13,15 +13,13 @@ public class Player extends Entity {
 	public static boolean hasKey = false;
 	KeyHandler keyH;
 	public int heroCounter;
-	public int heroNum;
-	public int screenX;
-	public int screenY;
+
 	public static boolean checkUp;
 	public static boolean checkDown;
 	public static boolean checkLeft;
 	public static boolean checkRight;
 	public static int checkSpeedPT = 0;
-	public boolean attack = false;
+
 	Rectangle attackArea = new Rectangle(0,0,0,0);
 	public Player(GamePanel gp, KeyHandler KeyH, int attack, int defense) {
 		super(gp);
@@ -94,31 +92,24 @@ public class Player extends Entity {
 		}
 		colissionOnRoW = false;
 		colissionOnCol = false;
-//		gp.cChecker.checkTile(this);
+		gp.cChecker.checkTile(this);
 		int objIndex = gp.cChecker.checkObject(this, true);
 		CollisionChecker.interactor.ObjInteraction(gp,objIndex);
-		if (!colissionOnRoW|| !colissionOnCol){
+		if (!colissionOnCol||!colissionOnRoW){
 			if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed){
-				if(!colissionOnCol){
 					if (keyH.upPressed) {
-						worldY -= Entity.speeds();
+						worldY -= this.speeds();
 					}
 					if (keyH.downPressed) {
-						worldY += Entity.speeds();
+						worldY += this.speeds();
 					}
-				}
-				if(!colissionOnRoW){
-
 					if (keyH.rightPressed) {
-						worldX += Entity.speeds();
+						worldX += this.speeds();
 					}
 					if (keyH.leftPressed) {
-						worldX -= Entity.speeds();
+						worldX -= this.speeds();
 					}
-				}
-				colissionOnRoW = false;
-				colissionOnCol = false;
-//				gp.cChecker.checkTile(this);
+				gp.cChecker.checkTile(this);
 				heroCounter += 1;
 				if (heroCounter > 10) {
 					if (heroNum == 1) {

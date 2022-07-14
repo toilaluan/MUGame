@@ -8,8 +8,9 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import entity.Monster;
 import entity.Player;
-import graphic.PlayerGraphic;
+import graphic.EntityGraphic;
 import object.OBJ;
 import render.TileManager;
 //import tile.TileManager;
@@ -35,13 +36,14 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int pauseState =2;
 
 	Thread gameThread;
-	KeyHandler keyH = new KeyHandler(this);
+	public KeyHandler keyH = new KeyHandler(this);
 	public Player player = new Player(this, keyH, 1, 1);
+	public Monster monster1 = new Monster(this, tileSize * 10, tileSize * 10, 1);
 	public TileManager tileM = new TileManager(this);
 	//	set Player's default position
 	public ArrayList<OBJ> obj = new ArrayList<>();
-	PlayerGraphic pg = new PlayerGraphic(player, this, keyH);
-
+	EntityGraphic pg = new EntityGraphic(player, this, "BlueNinja", "Lance");
+	EntityGraphic mg = new EntityGraphic(monster1, this, "Cyclope");
 	public AssetSetter aSetter = new AssetSetter(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public void setupGame(){
@@ -82,7 +84,8 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	public void update() {
 			if (gameState == playState) {
-				// update player
+				// update player\
+				monster1.update();
 				player.update();}
 	}
 	public void paintComponent(Graphics g) {
@@ -103,6 +106,7 @@ public class GamePanel extends JPanel implements Runnable{
 //			System.out.println(1);
 			}
 			pg.draw(g2);
+			mg.draw(g2);
 			ui.draw(g2);
 		}
 

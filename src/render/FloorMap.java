@@ -10,8 +10,10 @@ public class FloorMap extends TileMap{
     public Block[] blocks;
     public int mapWidth, mapHeight, columns;
     SpriteSheet sprite;
-    public FloorMap(SpriteSheet sprite, String data, int mapWidth, int mapHeight, int columns, int tileCount){
+    boolean collision;
+    public FloorMap(SpriteSheet sprite, String data, int mapWidth, int mapHeight, int columns, int tileCount, boolean collision){
         this.sprite = sprite;
+        this.collision = collision;
         blocks = new Block[mapWidth * mapHeight];
         this.mapHeight = mapHeight; //20
         this.mapWidth = mapWidth; //40
@@ -34,8 +36,6 @@ public class FloorMap extends TileMap{
 //                System.out.println(i);
                 int col = blocks[i].col;
                 int row = blocks[i].row;
-                System.out.println(col);
-                System.out.println(row);
                 int worldX = col*gp.tileSize;
                 int worldY = row*gp.tileSize;
                 int screenX = worldX - (gp.player.worldX - gp.player.screenX);
