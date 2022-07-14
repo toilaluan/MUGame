@@ -1,11 +1,16 @@
 package main;
 
 
+import object.OBJ;
+import object.OBJ_Heart;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class UI {
     GamePanel gp;
     Graphics2D g2;
+    BufferedImage heart_full, heart_half, heart_blank;
     Font arial_40;
     Font arial_80B;
     int subState = 0;
@@ -16,6 +21,11 @@ public class UI {
         this.gp = gp;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
+        //CREATE HUB  OBJECT
+        OBJ heart = new OBJ_Heart();
+        heart_full = heart.image;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;
 
     }
 
@@ -27,12 +37,39 @@ public class UI {
             drawTitleScreen();
         }
         if (gp.gameState == gp.playState) {
-
+            drawPlayerLife();
         } else if (gp.gameState == gp.pauseState) {
+            drawPlayerLife();
             drawPauseScreen();
         }
     }
+    public void drawPlayerLife(){
+        gp.player.life = 6;
+        int x = gp.tileSize/2;
+        int y = gp.tileSize/2;
+        int i = 0;
 
+        while(i < gp.player.maxlife/2){
+            g2.drawImage(heart_blank, x, y, null);
+            i++;
+            x += gp.tileSize;
+        }
+
+        //RESET
+        x = gp.tileSize/2;
+        y = gp.tileSize/2;
+        i = 0;
+        //DRAW CURRENT LIFE
+        while(i< gp.player.life){
+            g2.drawImage(heart_half, x, y, null);
+            i++;
+            if(i<gp.player.life){
+                g2.drawImage(heart_full, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
+        }
+    }
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = gp.screenWidth / 2 - length / 2;

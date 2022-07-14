@@ -47,6 +47,8 @@ public class Player extends Entity {
 		direction = "down";
 		heroCounter = 0;
 		heroNum = 0;
+		maxlife = 6;
+		life = maxlife;
 	}
 
 	public void update() {
@@ -132,7 +134,7 @@ public class Player extends Entity {
 		if(heroCounter <= 5){
 			heroNum = 1;
 		}
-		if(heroCounter > 5 && heroCounter < 25){
+		if(heroCounter > 5 && heroCounter < 10){
 			heroNum = 2;
 			//luu worldX,Y, solidArea
 			int currentWorldX = worldX;
@@ -157,7 +159,7 @@ public class Player extends Entity {
 			solidArea.width = solidAreaWidth;
 			solidArea.height = solidAreaHeight;
 		}
-		if(heroCounter >= 25){
+		if(heroCounter >= 10){
 			heroNum = 1;
 			heroCounter = 0;
 			attack = false;

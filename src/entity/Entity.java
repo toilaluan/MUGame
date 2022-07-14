@@ -22,8 +22,10 @@ public class Entity {
 		}
 		else return speed;
 	}
-	public int mp = 100;
-	public int hp = 100;
+//	public int mp = 100;
+//	public int hp = 100;
+	public int maxlife;
+	public int life;
 	public int Attack;
 	public int Defense;
 	public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2;
