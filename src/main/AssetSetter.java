@@ -13,8 +13,8 @@ public class AssetSetter {
     }
     public void setObject(ArrayList<OBJ> obj){
         OBJ key_1 = new OBJ_key();
-        key_1.worldX = gp.tileSize * 19;
-        key_1.worldY = gp.tileSize * 25;
+        key_1.worldX = gp.tileSize * 15;
+        key_1.worldY = gp.tileSize * 15;
         obj.add(key_1);
         OBJ door_1 = new OBJ_Door();
         door_1.worldX = gp.tileSize * 27;

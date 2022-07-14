@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class OBJ {
     public String name;
-    public BufferedImage image;
+    public BufferedImage image, image2, image3;
     public int worldX;
     public int worldY;
     public boolean colission = true;

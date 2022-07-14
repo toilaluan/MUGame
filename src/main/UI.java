@@ -1,11 +1,17 @@
 package main;
 
 
+import object.OBJ;
+import object.OBJ_Heart;
+import object.OBJ_mana;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class UI {
     GamePanel gp;
     Graphics2D g2;
+    BufferedImage heart_full, heart_half, heart_blank, mana_full,mana_half, mana_blank;
     Font arial_40;
     Font arial_80B;
     int subState = 0;
@@ -16,6 +22,16 @@ public class UI {
         this.gp = gp;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
+        //CREATE HUB  OBJECT
+        OBJ heart = new OBJ_Heart();
+        heart_full = heart.image;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;
+
+        OBJ mana = new OBJ_mana();
+        mana_blank = mana.image;
+        mana_half = mana.image2;
+        mana_full = mana.image3;
 
     }
 
@@ -27,12 +43,63 @@ public class UI {
             drawTitleScreen();
         }
         if (gp.gameState == gp.playState) {
-
+            drawPlayerLife();
+            drawPlayerMana();
         } else if (gp.gameState == gp.pauseState) {
+            drawPlayerLife();
+            drawPlayerMana();
             drawPauseScreen();
         }
     }
+    public void drawPlayerLife(){
+        gp.player.life = 6;
+        int x = gp.tileSize/2;
+        int y = gp.tileSize/2;
+        int i = 0;
+        while(i < gp.player.maxlife/2){
+            g2.drawImage(heart_blank, x, y, null);
+            i++;
+            x += gp.tileSize;
+        }
+        //RESET
+        x = gp.tileSize/2;
+        y = gp.tileSize/2;
+        i = 0;
+        //DRAW CURRENT LIFE
+        while(i< gp.player.life){
+            g2.drawImage(heart_half, x, y, null);
+            i++;
+            if(i<gp.player.life){
+                g2.drawImage(heart_full, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
+        }
+    }
 
+    public void drawPlayerMana(){
+        gp.player.mana = 5;
+        int x = gp.tileSize/2;
+        int y = gp.tileSize;
+        int i = 0;
+        while(i < gp.player.maxmana/2){
+            g2.drawImage(mana_blank, x, y, null);
+            i++;
+            x += gp.tileSize;
+        }
+        x = gp.tileSize/2;
+        y = gp.tileSize;
+        i = 0;
+        while(i< gp.player.mana){
+            g2.drawImage(mana_half, x, y, null);
+            i++;
+            if(i<gp.player.mana){
+                g2.drawImage(mana_full, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
+        }
+    }
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = gp.screenWidth / 2 - length / 2;
