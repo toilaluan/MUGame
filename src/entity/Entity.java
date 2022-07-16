@@ -13,7 +13,7 @@ public class Entity {
 	public int worldX = 100;
 	public int worldY = 100;
 	public int monsterSpeed;
-	public int speed = 4;
+	public int speed = 2;
 	public int speeds() {
 		if (Player.checkSpeedPT==1) {
 			Player.checkSpeedPT = 0;
