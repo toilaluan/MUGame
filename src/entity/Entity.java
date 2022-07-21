@@ -13,11 +13,14 @@ public abstract class Entity {
 	public int speed;
 	public int maxlife;
 	public int attack;
+	public int defend;
 	public boolean attacking;
 	public int life;
 	public int maxMana;
 	public int mana;
-	public int defend;
+
+	public boolean alive = true;
+	public boolean dying = false;
 
 	public String direction;
 	public ArrayList<OBJ> item;
