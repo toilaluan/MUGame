@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class Monster extends Entity{
     public Rectangle attackArea = new Rectangle(0,0,0,0);
+    public int defaultWorldX, defaultWorldY;
     public Monster(int attack,
                   int defense,
                   int speed,

@@ -23,7 +23,6 @@ public class PlayerController extends EntityController{
     }
     private void setDefaultValue(){
         hasKey = false;
-        heroCounter = 0;
         screenX = gp.screenWidth/2-gp.tileSize/2;
         screenY = gp.screenHeight/2-gp.tileSize/2;
         player.worldX = gp.tileSize * 8;

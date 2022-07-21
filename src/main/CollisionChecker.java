@@ -64,50 +64,6 @@ public class CollisionChecker {
                     break;
             }
         }
-        /*if (Player.checkUp) {
-            switch (entity.direction) {
-                case "up":
-                    entityTopRow = (entityTopWorldY - entity.speed) / gp.tileSize;
-                    tileNum1 = gp.tileM.mapTile[entityTopRow][entityRightCol];
-                    tileNum2 = gp.tileM.mapTile[entityTopRow][entityRightCol];
-                    System.out.println(tileNum1);
-                    System.out.println("And");
-                    System.out.println(tileNum2);
-                    Entity.colissionOnCol = gp.tileM.tile[tileNum1].collision;
-                    Entity.colissionOnRoW = gp.tileM.tile[tileNum2].collision;
-                    break;
-                case "down":
-                    entityBottomRow = (entityBottomWorldY + entity.speed) / gp.tileSize;
-                    tileNum1 = gp.tileM.mapTile[entityBottomRow][entityLeftCol];
-                    tileNum2 = gp.tileM.mapTile[entityBottomRow][entityRightCol];
-                    System.out.println(tileNum1);
-                    System.out.println("And");
-                    System.out.println(tileNum2);
-                    Entity.colissionOnCol = gp.tileM.tile[tileNum1].collision;
-                    Entity.colissionOnRoW = gp.tileM.tile[tileNum2].collision;
-                    break;
-                case "left":
-                    entityLeftCol = (entityLeftWorldX - entity.speed) / gp.tileSize;
-                    tileNum1 = gp.tileM.mapTile[entityTopRow][entityLeftCol];
-                    tileNum2 = gp.tileM.mapTile[entityBottomRow][entityLeftCol];
-                    System.out.println(tileNum1);
-                    System.out.println("And");
-                    System.out.println(tileNum2);
-                    Entity.colissionOnCol = gp.tileM.tile[tileNum1].collision;
-                    Entity.colissionOnRoW = gp.tileM.tile[tileNum2].collision;
-                    break;
-                case "right":
-                    entityRightCol = (entityRightWorldX - entity.speed) / gp.tileSize;
-                    tileNum1 = gp.tileM.mapTile[entityTopRow][entityRightCol];
-                    tileNum2 = gp.tileM.mapTile[entityBottomRow][entityRightCol];
-                    System.out.println(tileNum1);
-                    System.out.println("And");
-                    System.out.println(tileNum2);
-                    Entity.colissionOnCol = gp.tileM.tile[tileNum1].collision;
-                    Entity.colissionOnRoW = gp.tileM.tile[tileNum2].collision;
-                    break;
-            }
-        }*/
 
     public int checkObject(Entity entity, boolean player, EntityController entityController){
         int index = 999;

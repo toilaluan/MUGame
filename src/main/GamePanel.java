@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	public Player player = new Player(1, 1, 4, 6, 6, "down");
 	public PlayerController playerController = new PlayerController(this, player);
-	public Monster monster1 = new Monster(1, 1, 2, 4, 4, "down");
+	public Monster monster1 = new Monster(1, 1, 1, 4, 4, "down");
 	public MonsterController monsterController = new MonsterController(this, monster1);
 	public TileManager tileM = new TileManager(this);
 	//	set Player's default position
@@ -100,7 +100,9 @@ public class GamePanel extends JPanel implements Runnable{
 			if (gameState == playState) {
 				// update player\
 				monsterController.update();
-				playerController.update(); System.out.println(player.life);}
+				playerController.update();
+//				System.out.println(player.life);
+			}
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
