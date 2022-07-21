@@ -23,11 +23,11 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int scale = 3; // tang kich thuoc nhan vat theo scale
 	public final int tileSize = scale * originalTileSize;
 	public final int maxScreenCol = 16;
-	public final int maxScreenRow = 12; //ti le 16:9
+	public final int maxScreenRow = 16; //ti le 16:9
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize * maxScreenRow;
-	public final int maxWorldRow = 50;
-	public final int maxWorldCol = 50;
+	public final int maxWorldRow = 20;
+	public final int maxWorldCol = 40;
 
 	public final int worldWidth = tileSize * maxWorldCol;
 	public final int worldHeight = tileSize * maxWorldRow;
@@ -41,12 +41,15 @@ public class GamePanel extends JPanel implements Runnable{
 
 	Thread gameThread;
 	public KeyHandler keyH = new KeyHandler(this);
+	public void initPlayer(){
+
+	}
 	public Player player = new Player(this, keyH, 1, 1);
 	public Monster monster1 = new Monster(this, tileSize * 10, tileSize * 10, 1);
 	public TileManager tileM = new TileManager(this);
 	//	set Player's default position
 	public ArrayList<OBJ> obj = new ArrayList<>();
-	EntityGraphic pg = new EntityGraphic(player, this, "BlueNinja", "Lance");
+	EntityGraphic pg = new EntityGraphic(player, this, "BlueSamurai", "Lance2");
 	EntityGraphic mg = new EntityGraphic(monster1, this, "Cyclope");
 	public AssetSetter aSetter = new AssetSetter(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
