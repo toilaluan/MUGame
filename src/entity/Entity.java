@@ -21,5 +21,5 @@ public abstract class Entity {
 
 	public String direction;
 	public ArrayList<OBJ> item;
-	public Rectangle solidArea = new Rectangle(0,0,48,48);
+	public Rectangle solidArea;
 }

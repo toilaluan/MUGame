@@ -4,6 +4,8 @@ import entity.Player;
 import main.CollisionChecker;
 import main.GamePanel;
 
+import java.awt.*;
+
 public class PlayerController extends EntityController{
     GamePanel gp;
     Player player;
@@ -28,6 +30,11 @@ public class PlayerController extends EntityController{
         player.worldY = gp.tileSize * 8;
         heroCounter = 0;
         heroNum = 0;
+        player.solidArea = new Rectangle();
+        player.solidArea.x = 8;
+        player.solidArea.y = 16;
+        player.solidArea.width = 32;
+        player.solidArea.height = 32;
     }
 
     @Override
