@@ -151,7 +151,6 @@ public class UI {
             if (commandNum == 0) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
-
             text = "Load Game";
             x = getXforCenteredText(text);
             y += gp.tileSize;
@@ -159,7 +158,6 @@ public class UI {
             if (commandNum == 1) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
-
             text = "Quit";
             x = getXforCenteredText(text);
             y += gp.tileSize;
@@ -177,7 +175,7 @@ public class UI {
             int y = gp.tileSize*3;
             g2.drawString(text,x,y);
 
-            text = "Fighter";
+            text = "Samurai";
             x = getXforCenteredText(text);
             y += gp.tileSize*5;
             g2.drawString(text,x,y);
@@ -185,7 +183,7 @@ public class UI {
                 g2.drawString(">", x -gp.tileSize,y);
             }
 
-            text = "Thief";
+            text = "Ninja";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text,x,y);
@@ -193,7 +191,7 @@ public class UI {
                 g2.drawString(">", x -gp.tileSize,y);
             }
 
-            text = "Sorcerer";
+            text = "Knight";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text,x,y);

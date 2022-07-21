@@ -50,6 +50,8 @@ public class GamePanel extends JPanel implements Runnable{
 	//	set Player's default position
 	public ArrayList<OBJ> obj = new ArrayList<>();
 	EntityGraphic pg = new EntityGraphic(player, this, "BlueSamurai", "Lance2");
+	EntityGraphic pg2 =new EntityGraphic(player, this, "blueninja","lance");
+	EntityGraphic pg3=new EntityGraphic(player, this,"Knight","Katana");
 	EntityGraphic mg = new EntityGraphic(monster1, this, "Cyclope");
 	public AssetSetter aSetter = new AssetSetter(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
@@ -95,7 +97,8 @@ public class GamePanel extends JPanel implements Runnable{
 			if (gameState == playState) {
 				// update player\
 				monster1.update();
-				player.update(); System.out.println(player.life);}
+				player.update();
+				System.out.println(player.life);}
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
