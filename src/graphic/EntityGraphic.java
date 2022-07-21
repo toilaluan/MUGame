@@ -1,7 +1,6 @@
 package graphic;
 
 import entity.Entity;
-import entity.Player;
 import main.GamePanel;
 import main.KeyHandler;
 

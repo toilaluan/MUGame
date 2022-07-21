@@ -17,6 +17,7 @@ public class ObjInteraction {
 						gp.obj.remove(gp.obj.get(i));
 //						gp.tileM.getMap("/maps/Rung.txt");
 						System.out.println("Move to next map!");
+						gp.tileM.updateMap("map/Map1.xml");
 					}
 					break;
 				case "SpeedPotion":

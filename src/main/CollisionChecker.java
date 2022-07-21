@@ -1,7 +1,6 @@
 package main;
 
 import entity.Entity;
-import entity.Player;
 import object.ObjInteraction;
 
 public class CollisionChecker {
@@ -23,7 +22,7 @@ public class CollisionChecker {
             switch (entity.direction) {
                 case "up":
                     entityTopRow = (entityTopWorldY - entity.speeds()) / gp.tileSize;
-                    System.out.println(entityTopRow);
+//                    System.out.println(entityTopRow);
                     int index_topright = gp.maxWorldCol*entityTopRow + entityRightCol;
                     int index_topleft = gp.maxWorldCol*entityTopRow + entityLeftCol;
                     if (index_topleft < 0 || index_topright < 0 || index_topleft > gp.maxWorldCol*gp.maxWorldRow || index_topright > gp.maxWorldCol*gp.maxWorldRow){

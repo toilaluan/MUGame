@@ -86,7 +86,7 @@ public class GamePanel extends JPanel implements Runnable{
 			if (gameState == playState) {
 				// update player\
 				monster1.update();
-				player.update();}
+				player.update(); System.out.println(player.life);}
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

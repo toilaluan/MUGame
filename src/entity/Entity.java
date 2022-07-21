@@ -5,7 +5,6 @@ import object.OBJ;
 import object.OBJ_SpeedPotion;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Entity {

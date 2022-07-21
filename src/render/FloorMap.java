@@ -4,7 +4,6 @@ import graphic.SpriteSheet;
 import main.GamePanel;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class FloorMap extends TileMap{
     public Block[] blocks;

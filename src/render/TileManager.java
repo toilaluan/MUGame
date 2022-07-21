@@ -23,7 +23,11 @@ public class TileManager {
     public TileManager(GamePanel gp){
         tileMaps = new ArrayList<>();
         this.gp = gp;
-        addTileMap("map/Map1.xml");
+        addTileMap("map/Map2.xml");
+    }
+    public void updateMap(String path){
+        tileMaps = new ArrayList<>();
+        addTileMap(path);
     }
 //    public static void main(String[] args) {
 //        GamePanel gp = new GamePanel();
@@ -37,7 +41,7 @@ public class TileManager {
         String imagePath;
         ArrayList<SpriteSheet> sprites = new ArrayList<>();
         String[] data = new String[10];
-        System.out.println(path);
+//        System.out.println(path);
         try {
             DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = builderFactory.newDocumentBuilder();

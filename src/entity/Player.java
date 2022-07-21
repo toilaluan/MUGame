@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import main.CollisionChecker;
 import main.GamePanel;
 import main.KeyHandler;
-import object.OBJ;
 
 public class Player extends Entity {
 
