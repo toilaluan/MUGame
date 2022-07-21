@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -22,18 +23,21 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int scale = 3; // tang kich thuoc nhan vat theo scale
 	public final int tileSize = scale * originalTileSize;
 	public final int maxScreenCol = 16;
-	public final int maxScreenRow = 16; //ti le 16:9
+	public final int maxScreenRow = 12; //ti le 16:9
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize * maxScreenRow;
-	public final int maxWorldRow = 20;
-	public final int maxWorldCol = 40;
+	public final int maxWorldRow = 50;
+	public final int maxWorldCol = 50;
 
 	public final int worldWidth = tileSize * maxWorldCol;
 	public final int worldHeight = tileSize * maxWorldRow;
+
+
 	public int gameState;
 	public final int titleState=0;
 	public final int playState =1;
 	public final int pauseState =2;
+	Sound sound= new Sound();
 
 	Thread gameThread;
 	public KeyHandler keyH = new KeyHandler(this);
@@ -49,6 +53,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public void setupGame(){
 		aSetter.setObject(obj);
 		gameState=titleState;
+		playMusic(0);
+
 	}
 	public UI ui=new UI(this);
 	public GamePanel() {
@@ -112,5 +118,18 @@ public class GamePanel extends JPanel implements Runnable{
 
 		g2.dispose();
 
+	}
+	public void playMusic(int i){
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+
+	public void stopMusic(){
+		sound.stop();
+	}
+	public void playSE(int i){
+		sound.setFile(i);
+		sound.play();
 	}
 }
