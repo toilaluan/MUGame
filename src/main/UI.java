@@ -43,16 +43,16 @@ public class UI {
             drawTitleScreen();
         }
         if (gp.gameState == gp.playState) {
-            drawPlayerLife();
-            drawPlayerMana();
+            drawPlayerLife(gp.player.life);
+            drawPlayerMana(gp.player.mana);
         } else if (gp.gameState == gp.pauseState) {
-            drawPlayerLife();
-            drawPlayerMana();
+            drawPlayerLife(gp.player.life);
+            drawPlayerMana(gp.player.mana);
             drawPauseScreen();
         }
     }
-    public void drawPlayerLife(){
-        gp.player.life = 3;
+    public void drawPlayerLife(int life){
+        gp.player.life = life;
         int x = gp.tileSize/2;
         int y = gp.tileSize/2;
         int i = 0;
@@ -77,8 +77,8 @@ public class UI {
         }
     }
 
-    public void drawPlayerMana(){
-        gp.player.mana = 5;
+    public void drawPlayerMana(int mana){
+        gp.player.mana = mana;
         int x = gp.tileSize/2;
         int y = gp.tileSize;
         int i = 0;
@@ -177,7 +177,7 @@ public class UI {
             int y = gp.tileSize*3;
             g2.drawString(text,x,y);
 
-            text = "Fighter";
+            text = "Samurai";
             x = getXforCenteredText(text);
             y += gp.tileSize*5;
             g2.drawString(text,x,y);
@@ -185,7 +185,7 @@ public class UI {
                 g2.drawString(">", x -gp.tileSize,y);
             }
 
-            text = "Thief";
+            text = "Ninja";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text,x,y);
@@ -193,7 +193,7 @@ public class UI {
                 g2.drawString(">", x -gp.tileSize,y);
             }
 
-            text = "Sorcerer";
+            text = "Knight";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text,x,y);
