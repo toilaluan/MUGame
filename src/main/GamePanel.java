@@ -1,5 +1,4 @@
 package main;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -8,7 +7,11 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicTreeUI;
 
+import controller.MonsterController;
+import controller.PlayerController;
+//import entity.Monster;
 import entity.Monster;
 import entity.Player;
 import graphic.EntityGraphic;
@@ -44,13 +47,15 @@ public class GamePanel extends JPanel implements Runnable{
 	public void initPlayer(){
 
 	}
-	public Player player = new Player(this, keyH, 1, 1);
-	public Monster monster1 = new Monster(this, tileSize * 10, tileSize * 10, 1);
+	public Player player = new Player(1, 1, 4, 6, 6, "down");
+	public PlayerController playerController = new PlayerController(this, player);
+	public Monster monster1 = new Monster(1, 1, 2, 4, 4, "down");
+	public MonsterController monsterController = new MonsterController(this, monster1);
 	public TileManager tileM = new TileManager(this);
 	//	set Player's default position
 	public ArrayList<OBJ> obj = new ArrayList<>();
-	EntityGraphic pg = new EntityGraphic(player, this, "BlueSamurai", "Lance2");
-	EntityGraphic mg = new EntityGraphic(monster1, this, "Cyclope");
+	EntityGraphic pg = new EntityGraphic(player, this, "BlueSamurai", "Lance2", playerController);
+	EntityGraphic mg = new EntityGraphic(monster1, this, "Cyclope", monsterController);
 	public AssetSetter aSetter = new AssetSetter(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public void setupGame(){
@@ -94,8 +99,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public void update() {
 			if (gameState == playState) {
 				// update player\
-				monster1.update();
-				player.update(); System.out.println(player.life);}
+				monsterController.update();
+				playerController.update(); System.out.println(player.life);}
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

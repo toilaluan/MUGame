@@ -82,7 +82,7 @@ public class UI {
         int x = gp.tileSize/2;
         int y = gp.tileSize;
         int i = 0;
-        while(i < gp.player.maxmana/2){
+        while(i < gp.player.maxMana/2){
             g2.drawImage(mana_blank, x, y, null);
             i++;
             x += gp.tileSize;

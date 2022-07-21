@@ -1,5 +1,6 @@
 package graphic;
 
+import controller.EntityController;
 import entity.Entity;
 import main.GamePanel;
 import main.KeyHandler;
@@ -14,17 +15,16 @@ public class EntityGraphic extends Entity {
     Entity player;
     GamePanel gp;
 	KeyHandler keyH;
-	String walk_SS_path = "/player/blue_ninja/Walk.png";
-	String attack_SS_path = "/player/blue_ninja/Attack.png";
-	String attack_item_SS_path = "/Items/Weapons/Lance/SpriteInHand.png"; //Down direction
+	String walk_SS_path;
+	String attack_SS_path;
+	String attack_item_SS_path;
 	SpriteSheet walkSS;
 	SpriteSheet attackSS;
     ArrayList<BufferedImage> walk_images;
 	ArrayList<BufferedImage> attack_images;
-
+	EntityController entityController;
 	Weapon wp;
-    public EntityGraphic(Entity p, GamePanel gp, String playerType, String attackType){
-		super(gp);
+    public EntityGraphic(Entity p, GamePanel gp, String playerType, String attackType, EntityController entityController){
 		this.walk_SS_path = "/Actor/Characters/" + playerType + "/SeparateAnim/Walk.png";
 		this.attack_SS_path = "/Actor/Characters/" + playerType + "/SeparateAnim/Attack.png";
 		this.attack_item_SS_path = "/Items/Weapons/" + attackType + "SpriteInHand.png";
@@ -36,9 +36,9 @@ public class EntityGraphic extends Entity {
 		walk_images = walkSS.getSpriteImage(4, 4);
 		attack_images = attackSS.getSpriteImage(4, 1);
 		wp = new Weapon(gp);
+		this.entityController = entityController;
     }
-	public EntityGraphic(Entity p, GamePanel gp, String monsterType){
-		super(gp);
+	public EntityGraphic(Entity p, GamePanel gp, String monsterType, EntityController entityController){
 		this.walk_SS_path = "/Actor/Monsters/" + monsterType + "/" + monsterType + ".png";
 		this.attack_SS_path = "/Actor/Characters/" + "BlueNinja" + "/SeparateAnim/Attack.png";
 		this.attack_item_SS_path = "/Items/Weapons/" + "Lance" + "SpriteInHand.png";
@@ -50,6 +50,7 @@ public class EntityGraphic extends Entity {
 		walk_images = walkSS.getSpriteImage(4, 4);
 		attack_images = attackSS.getSpriteImage(4, 1);
 		wp = new Weapon(gp);
+		this.entityController = entityController;
 	}
     public BufferedImage getImage(String path){
 		BufferedImage bImage = null;
@@ -68,7 +69,7 @@ public class EntityGraphic extends Entity {
 //		g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 		switch(player.direction) {
 		case "right":
-			if (player.attack){
+			if (player.attacking){
 				image = attack_images.get(3);
 			}
 			else{
@@ -76,7 +77,7 @@ public class EntityGraphic extends Entity {
 			}
 			break;
 		case "down":
-			if (player.attack){
+			if (player.attacking){
 				image = attack_images.get(0);
 			}
 			else{
@@ -84,7 +85,7 @@ public class EntityGraphic extends Entity {
 			}
 			break;
 		case "left":
-			if (player.attack){
+			if (player.attacking){
 				image = attack_images.get(2);
 			}
 			else{
@@ -92,7 +93,7 @@ public class EntityGraphic extends Entity {
 			}
 			break;
 		case "up":
-			if (player.attack){
+			if (player.attacking){
 				image = attack_images.get(1);
 			}
 			else{
@@ -100,15 +101,15 @@ public class EntityGraphic extends Entity {
 			}
 			break;
 		}
-		if (gp.player.attack){
+		if (player.attacking){
 			wp.draw(g2);
 		}
-		g2.drawImage(image, player.screenX, player.screenY, gp.tileSize, gp.tileSize, null);
+		g2.drawImage(image, entityController.screenX, entityController.screenY, gp.tileSize, gp.tileSize, null);
 	}
 
 	public BufferedImage imageSelector(BufferedImage run0, BufferedImage run1, BufferedImage run2, BufferedImage run3) {
 		BufferedImage image = null;
-		switch (player.heroNum){
+		switch (entityController.heroNum){
 			case 0: image = run0; break;
 			case 1: image = run1; break;
 			case 2: image = run2; break;

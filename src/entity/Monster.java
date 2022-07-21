@@ -2,24 +2,22 @@ package entity;
 
 import main.GamePanel;
 
-public class Monster extends  Entity{
+import java.awt.*;
 
-    public Monster(GamePanel gp, int worldX, int worldY, int speed) {
-        super(gp);
-        this.worldX = worldX;
-        this.worldY = worldY;
+public class Monster extends Entity{
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
+    public Monster(int attack,
+                  int defense,
+                  int speed,
+                  int maxLife,
+                  int maxMana,
+                  String direction) {
+        this.attack = attack;
+        this.defend = defense;
         this.speed = speed;
+        this.maxlife = maxLife;
+        this.maxMana = maxMana;
+        this.direction = direction;
     }
-    public void update(){
-        this.screenX = worldX - (gp.player.worldX - gp.player.screenX);
-        this.screenY = worldY - (gp.player.worldY - gp.player.screenY);
-        attack();
-    }
-    public void attack(){
-        double distance = Math.sqrt(Math.pow(gp.player.worldX-worldX,2) + Math.pow(gp.player.worldY - worldY,2));
-        System.out.println(distance);
-        if (distance < gp.tileSize){
-            gp.player.life -= 1;
-        }
-    }
+
 }

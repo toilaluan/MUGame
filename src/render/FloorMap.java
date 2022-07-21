@@ -37,8 +37,8 @@ public class FloorMap extends TileMap{
                 int row = blocks[i].row;
                 int worldX = col*gp.tileSize;
                 int worldY = row*gp.tileSize;
-                int screenX = worldX - (gp.player.worldX - gp.player.screenX);
-                int screenY = worldY - (gp.player.worldY - gp.player.screenY);
+                int screenX = worldX - (gp.player.worldX - gp.playerController.screenX);
+                int screenY = worldY - (gp.player.worldY - gp.playerController.screenY);
 //                System.out.println(i);
                 g2.drawImage(blocks[i].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             }

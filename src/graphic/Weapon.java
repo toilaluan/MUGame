@@ -28,8 +28,8 @@ public class Weapon {
             case "down":
                 r_img = rotateImageByDegrees(image, 0);
                 g2.drawImage(r_img,
-                        gp.player.screenX,
-                        gp.player.screenY+gp.tileSize,
+                        gp.playerController.screenX,
+                        gp.playerController.screenY+gp.tileSize,
                         r_img.getWidth()*gp.scale,
                         r_img.getHeight()*gp.scale,
                         null);
@@ -38,8 +38,8 @@ public class Weapon {
                 r_img = rotateImageByDegrees(image, 180);
                 g2.drawImage(
                         r_img,
-                        gp.player.screenX + gp.tileSize/2,
-                        gp.player.screenY-gp.tileSize/2,
+                        gp.playerController.screenX + gp.tileSize/2,
+                        gp.playerController.screenY-gp.tileSize/2,
                         r_img.getWidth()*gp.scale,
                         r_img.getHeight()*gp.scale,
                         null);
@@ -48,8 +48,8 @@ public class Weapon {
                 r_img = rotateImageByDegrees(image, 90);
                 g2.drawImage(
                         r_img,
-                        gp.player.screenX - gp.tileSize,
-                        gp.player.screenY + gp.tileSize/2,
+                        gp.playerController.screenX - gp.tileSize,
+                        gp.playerController.screenY + gp.tileSize/2,
                         r_img.getWidth()*gp.scale,
                         r_img.getHeight()*gp.scale,
                         null);
@@ -58,8 +58,8 @@ public class Weapon {
                 r_img = rotateImageByDegrees(image, 270);
                 g2.drawImage(
                         r_img,
-                        gp.player.screenX + gp.tileSize,
-                        gp.player.screenY + gp.tileSize/2,
+                        gp.playerController.screenX + gp.tileSize,
+                        gp.playerController.screenY + gp.tileSize/2,
                         r_img.getWidth()*gp.scale,
                         r_img.getHeight()*gp.scale,
                         null);
