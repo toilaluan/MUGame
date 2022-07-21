@@ -55,6 +55,8 @@ public class GamePanel extends JPanel implements Runnable{
 	//	set Player's default position
 	public ArrayList<OBJ> obj = new ArrayList<>();
 	EntityGraphic pg = new EntityGraphic(player, this, "BlueSamurai", "Lance2", playerController);
+	EntityGraphic pg2 = new EntityGraphic(player, this, "GreenNinja", "Lance", playerController);
+	EntityGraphic pg3 = new EntityGraphic(player, this, "Knight", "Katana", playerController);
 	EntityGraphic mg = new EntityGraphic(monster1, this, "Cyclope", monsterController);
 	public AssetSetter aSetter = new AssetSetter(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
